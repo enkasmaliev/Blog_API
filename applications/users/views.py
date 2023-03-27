@@ -19,6 +19,8 @@ class RegistrationView(CreateAPIView):
         return Response({'message': 'Thanks for registration!'})
     
 class ActivationView(CreateAPIView):
+    serializer_class = ActivationSerializer
+
     def post(self, request: Request, *args, **kwargs):
         serializer = ActivationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
