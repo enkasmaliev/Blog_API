@@ -72,6 +72,7 @@ class Like(models.Model):
     class Meta:
         verbose_name = 'Лайк'
         verbose_name_plural = 'Лайки'
+        unique_together = ('user', 'article')
 
     def __str__(self) -> str:
         return f'Like by {self.user.username}'
@@ -93,6 +94,14 @@ class Rating(models.Model):
     rate = models.PositiveSmallIntegerField(choices=RATES)
     # rate = models.PositiveSmallIntegerField(
     #     validators=[MinValueValidator(1), MaxValueValidator(5)])
+
+    def __str__(self):
+        return str(self.rate)
+
+    class Meta:
+        verbose_name = 'Рейтинг'
+        verbose_name_plural = 'Рейтинги'
+        unique_together = ['user', 'article']
 
 
 """
